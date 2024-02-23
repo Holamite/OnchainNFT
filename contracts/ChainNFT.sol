@@ -13,15 +13,25 @@ contract ChainNFT is ERC721URIStorage {
 
     constructor() ERC721("ChainNFT", "CHT") {}
 
-    function safeMint(address to) public {
+    function safeMint() public {
         uint256 tokenId = _nextTokenId++;
-        _safeMint(to, tokenId);
+        _safeMint(msg.sender, tokenId);
+        _setTokenURI(tokenId, getTokenURI());
     }
 
-    function generateSVG(
-        string memory _svgIMG
-    ) public pure returns (string memory) {
-        bytes memory svg = abi.encodePacked(_svgIMG);
+    function generateSVG() public pure returns (string memory) {
+        bytes memory svg = abi.encodePacked(
+            '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350">',
+            "<style>.base { fill: #C44292; font-family: serif; font-size: 14px; }</style>",
+            '<rect width="100%" height="100%" fill="black" />',
+            '<text x="50%" y="40%" class="base" dominant-baseline="middle" text-anchor="middle">',
+            "Warrior",
+            "</text>",
+            '<text x="50%" y="50%" class="base" dominant-baseline="middle" text-anchor="middle">',
+            "SufferHead NFT "
+            "</text>",
+            "</svg>"
+        );
 
         return
             string(
@@ -32,21 +42,14 @@ contract ChainNFT is ERC721URIStorage {
             );
     }
 
-    function getTokenURI(
-        string memory _svgIMG,
-        string memory name,
-        string memory description
-    ) public pure returns (string memory) {
+    function getTokenURI() public pure returns (string memory) {
         bytes memory dataURI = abi.encodePacked(
             "{",
-            '"name": "',
-            name,
+            '"name": "Holamite Pride #'
             '",',
-            '"description": "',
-            description,
-            '",',
+            '"description": "Holamite sufferhead NFT",',
             '"image": "',
-            generateSVG(_svgIMG),
+            generateSVG(),
             '"',
             "}"
         );
