@@ -1,9 +1,8 @@
-// SPDX-License-Identifier: SEE LICENSE IN LICENSE
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-// import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
 
 contract ChainNFT is ERC721URIStorage {
@@ -25,7 +24,7 @@ contract ChainNFT is ERC721URIStorage {
             "<style>.base { fill: #C44292; font-family: serif; font-size: 14px; }</style>",
             '<rect width="100%" height="100%" fill="black" />',
             '<text x="50%" y="40%" class="base" dominant-baseline="middle" text-anchor="middle">',
-            "Warrior",
+            "Holamite",
             "</text>",
             '<text x="50%" y="50%" class="base" dominant-baseline="middle" text-anchor="middle">',
             "SufferHead NFT "
